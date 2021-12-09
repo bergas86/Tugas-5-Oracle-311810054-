@@ -1,13 +1,30 @@
 # 1. Membuat Koneksi Oracle Menggunakan PHP
 Hal yang pertama dilakukan untuk membuat program Oracle menggunakan PHP adalah dengan mengkoneksikan Oracle ke PHP.
 
-`<?php $user="bergas_054"; $pass="054"; $database="LOCALHOST/XE"; $con = oci_connect($user, $pass, $database); if($con){    echo "Koneksi Sukses";  } else{    $err = oci_error();    echo "Gagal Koneksi". $err['text'];   } ?>`
+  1. Menginstal Oci8 (Di pertemuan ke-9)
+  2. Menentukan versi PHP masing-masing
+  3. Copy oci8.ddl dan oci8_11g dll, copy ke /Xampp/php/ext
+  4. Edit php.ini di xampp/php
+  5. Restar Apache/Xampp
 
+Kemudian koneksi database dan menggunakan fungsi pada extension.
+
+  `<?php $user="bergas_054"; $pass="054"; $database="LOCALHOST/XE"; $con = oci_connect($user, $pass, $database); if($con){    echo "Koneksi Sukses";  } else{    $err = oci_error();    echo "Gagal Koneksi". $err['text'];   } ?>`
+
+    - Tentukan variable $username, $password, dan $db untuk database Oracle
+    - Tentukan variable $db sebagai SID database
+ 
 Jika Koneksi Berhasil, silahkan buka Browser web kalian dengan memasukkan link 'Localhost/Oracle/koneksi.php'. Catatan : Link Sesuai dengan folder dan Nama file yang sudah kalian simpah
 ![oracle3](https://user-images.githubusercontent.com/46914608/145457170-60b423d7-098b-4d1f-be2f-ba8b2ddca996.png)
 
 # 2. Membuat View
-Selanjutnya adalah untuk membuat view. Sebenarnya saya membuat view lebih dari 5, Namun agar lebih mudah disini hanya saya tampilkan 2 dari view yang sudah saya buat
+View adalah salah satu object database di Oracle yang berfungsi sebagai virtual tabel. Bedanya Tabel dengan View adalah kalau View, Anda tidak bisa memodifikasi nilai atau data yang ada di View tersebut.
+
+View biasanya digunakan untuk men-generate sebuah report untuk keperluan tertentu, misalkan report transaksi harian, bulanan, dan lain sebagainya.
+
+View dibuat dengan menggunakan query SELECT statement dari satu atau lebih tabel.
+
+Selanjutnya saya akan mencontohkan dan menampilkan beberapa saja membuat view.
 
 `CREATE OR REPLACE view fak_transaksi as SELECT * FROM transaksi WHERE kd_faktur = 'barang xxx'; `
 
@@ -18,7 +35,10 @@ Jika sudah dibuat maka akan coba kita tampilkan Hasil dari view yang sudah kita 
 ![oracle2](https://user-images.githubusercontent.com/46914608/145457885-5c9d7bea-4d7d-4d61-8e46-a438bc649452.png)
 
 # 3. Membuat Halaman Home/Beranda
-Selanjutnya kita akan coba menampilkan view yang sudah dibuat kedalam project PHP menggunakan sublime Text 3. Berikut tampilannya!
+Halaman web yang bersifat dinamis dapat sangat berguna dan menghemat segala keperluan. contohnya untuk mengedit suatu halaman, kita hanya perlu mengeditnya di halaman itu saja. tanpa harus mengubah di semua halaman.
+
+Untuk memulai pembuatan web dinamis, kita buat sebuah project di localhost (htdocs), misalnya sebuah project (folder). Disini fordel saya dengan nama “oracle“ (C:\xampp\htdocs\oracle). Kemudian buat sebuah file dengan nama index.php.
+
 ![oracle4](https://user-images.githubusercontent.com/46914608/145458353-a184fa8c-2e50-4aea-80ce-03c990ba154f.png)
 
 # 4. Membuat Tabel Master
